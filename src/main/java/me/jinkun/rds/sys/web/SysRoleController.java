@@ -35,6 +35,7 @@ public class SysRoleController {
     @RequestMapping(value = "/sys/roles", method = RequestMethod.POST)
     @ResponseBody
     public Object save(SysRoleForm form) {
+        String s = new Gson().toJson(form);
         return sysRoleService.saveOrUpdate(form);
     }
 

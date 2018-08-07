@@ -1,5 +1,6 @@
 package me.jinkun.rds.sys.web;
 
+import me.jinkun.rds.common.base.Tree;
 import me.jinkun.rds.sys.service.SysOrgService;
 import me.jinkun.rds.sys.web.form.SysOrgForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @Description: HelloWorld！ <br/>
@@ -45,7 +48,8 @@ public class SysOrgController {
     @RequestMapping(value = "/sys/orgs/tree", method = RequestMethod.GET)
     @ResponseBody
     public Object tree(SysOrgForm form) {
-        return sysOrgService.tree(form);
+        List<Tree> tree = sysOrgService.tree(form);
+        return tree;
     }
 
     @RequestMapping(value = "/sys/orgs/{id}", method = RequestMethod.GET)

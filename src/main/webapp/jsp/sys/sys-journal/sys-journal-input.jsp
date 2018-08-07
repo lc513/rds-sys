@@ -7,18 +7,18 @@ Date: 2016-12-30
 <form id="SysJournalForm" method="post">
      <table class="com_table"  align="center">
         <input type="hidden" name="id">
-        <input type="hidden" name="pid">
-        <input type="hidden" name="uid">
+        <input type="hidden" name="uId">
         <tr>
             <td></td>
             <td><label>组织名:</label></td>
-            <td><select class="easyui-combobox com_input"  id="parentJournal"  name="sysProject.name" data-options="textField:'text',valueField:'pId'"></select></td>
+            <td><select class="easyui-combobox com_input"  id="parentJournal"  name="pId" data-options="textField:'text',valueField:'pId'"></select></td>
             <td></td>
         </tr>
         <tr>
             <td></td>
             <td><label>日期:</label></td>
             <td><input class="easyui-textbox com_input" name="jDate" data-options="required:false"/></td>
+            <%--<td><input class="easyui-datetimebox com_input" name="jDate" value="2018-01-01 11:11:11" data-options="required:false" /></td>--%>
             <td></td>
         </tr>
         <tr>

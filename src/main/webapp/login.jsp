@@ -49,7 +49,7 @@
                     <td></td>
                     <td><label>密&nbsp;码:</label></td>
                     <td><input class="easyui-passwordbox" type="text" id="password" name="password"
-                               data-options="required:true,value:'123456'"/></td>
+                               data-options="required:true,value:'1'"/></td>
                     <td></td>
                 </tr>
                 <tr style="height: 20px;"></tr>

@@ -23,8 +23,11 @@ var SysJournal = {
         update: function () {
             return ctx + "/journal/update";
         },
-        save: function () {
+        add: function () {
             return ctx + "/journal/add";
+        },
+        project: function () {
+            return ctx + "/project/tree";
         },
         delete: function (ids) {
             return ctx + "/journal/delete" + ids;
@@ -47,28 +50,12 @@ var SysJournal = {
         initForm: function () {
             //提交时调用
             SysJournalForm.form({
-                url: SysJournal.URL.update(),
+                url: SysJournal.URL.add(),
                 onSubmit: function () {
-                    // if (SysJournal.faild.add) {
-                    //
-                    // }else {
-                    //     alert("修改");
-                    // }
-                    // $.ajax({
-                    //     type: "GET",
-                    //     url: SysJournal.URL.save(),
-                    //     success: function (data) {
-                    //         console.log(data);
-                    //         alert(data);
-                    //         if (data.code == 200) {
-                    //             alert("成功");
-                    //         }else {
-                    //             alert(data.msg);
-                    //         }
-                    //     }
-                    // });
+
                 },
                 success: function (data) {
+                    console.log(data);
                     var data = eval('(' + data + ')');
                     if (data.code == 200) {
                         SysJournal.input.close();
@@ -150,22 +137,21 @@ var SysJournal = {
         //增
         add: function () {
             SysJournal.faild.add = true;
-            // alert(SysJournal.faild.add);
+            alert(SysJournal.faild.add);
             SysJournalEdit.dialog({
                     href: SysJournal.URL.inputUI(),
                     onLoad: function () {
-                        // parentJournal.combotree({
-                        //     url: SysJournal.URL.save(),
-                        //     method: 'get',
-                        //     panelHeight: 'auto'
-                        // });
+                        parentJournal.combotree({
+                            url: SysJournal.URL.project(),
+                            method: 'get',
+                            panelHeight: 'auto'
+                        });
                     }
                 })
                 .dialog("open");
         },
         //改
         edit: function () {
-            SysJournal.faild.add = false;
             var sels = SysJournalList.treegrid("getSelections");
             if (sels.length < 1) {
                 $.messager.alert("对话框", "至少选择一行");
@@ -183,6 +169,12 @@ var SysJournal = {
                         //方案一：使用Form的load去load数据
                         //SysJournalForm.form("load", SysJournal.URL.get(sels[0].id));
                         //方案二：直接使用列表的row数据
+                        //项目数据
+                        parentJournal.combotree({
+                            url: SysJournal.URL.project(),
+                            method: 'get',
+                            panelHeight: 'auto'
+                        });
                         SysJournalForm.form("load",sels[0]);
                         //方案三：使用Ajax请求数据
                         // $.ajax({

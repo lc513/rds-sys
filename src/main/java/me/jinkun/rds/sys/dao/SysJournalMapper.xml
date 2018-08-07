@@ -273,7 +273,7 @@
 
   <!--以下是个人添加-->
   <sql id="Base_Column_List2">
-    j.id, j.p_id, j.u_id, j.j_date, j.work_duration, j.work_desc, j.over_time, j.over_desc, j.examine , p.id, p.name
+    j.id, j.p_id, j.u_id, j.j_date, j.work_duration, j.work_desc, j.over_time, j.over_desc, j.examine , p.name, p.id
   </sql>
   <resultMap id="BaseResultMap2" type="me.jinkun.rds.sys.domain.SysJournal">
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -287,7 +287,7 @@
     <result column="examine" jdbcType="INTEGER" property="examine" />
     <association property="sysProject" javaType="me.jinkun.rds.sys.domain.SysProject">
       <id column="id" jdbcType="BIGINT"  property="id" />
-      <id column="name" jdbcType="VARCHAR"  property="name" />
+      <result column="name" jdbcType="VARCHAR" property="name" />
     </association>
   </resultMap>
   <select id="selectJournalAndProjectByExample" parameterType="me.jinkun.rds.sys.domain.SysJournalExample" resultMap="BaseResultMap2">

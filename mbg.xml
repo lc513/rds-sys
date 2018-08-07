@@ -47,6 +47,17 @@
 		<table tableName="rank" domainObjectName="Rank"></table>
 		<table tableName="task" domainObjectName="Task"></table>
 		<table tableName="sys_project" domainObjectName="SysProject"></table> -->
-		<table tableName="sys_journal1" domainObjectName="SysJournal1"></table>
+		<table tableName="gw_supplier1" domainObjectName="GwSupplier1"></table>
+		<!--<table tableName="gw_supplier" domainObjectName="GwSupplier"></table>-->
+		<!--<table tableName="gw_company" domainObjectName="GwCompany"></table>-->
+		<!--<table tableName="gw_check_classify" domainObjectName="GwCheckClassify"></table>-->
+		<!--<table tableName="gw_frequency_type" domainObjectName="GwFrequencyType"></table>-->
+		<!--<table tableName="gw_check_temp" domainObjectName="GwCheckTemp"></table>-->
+		<!--<table tableName="gw_check_route" domainObjectName="GwCheckRoute"></table>-->
+		<!--<table tableName="gw_check_manager" domainObjectName="GwCheckManager"></table>-->
+		<!--<table tableName="gw_check_content" domainObjectName="GwCheckContent"></table>-->
+		<!--<table tableName="gw_quality_inspect_task" domainObjectName="GwQualityInspectTask"></table>-->
+		<!--<table tableName="gw_quality_inspect_task_detail" domainObjectName="GwQualityInspectTaskDetail"></table>-->
+		<!--<table tableName="gw_quality_inspect_task_result" domainObjectName="GwQualityInspectTaskResult"></table>-->
 	</context>
 </generatorConfiguration>

@@ -1,6 +1,8 @@
 package me.jinkun.rds.sys.domain;
 
-public class SysProject {
+import me.jinkun.rds.common.base.BaseForm;
+
+public class SysProject extends BaseForm {
     private Long id;
 
     private String name;

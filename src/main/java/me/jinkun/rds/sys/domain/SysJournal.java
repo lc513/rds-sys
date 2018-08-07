@@ -1,14 +1,18 @@
 package me.jinkun.rds.sys.domain;
 
+import me.jinkun.rds.common.base.BaseForm;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
-public class SysJournal {
+public class SysJournal extends BaseForm {
     private Long id;
 
     private Long pId;
 
     private Long uId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date jDate;
 
     private Integer workDuration;

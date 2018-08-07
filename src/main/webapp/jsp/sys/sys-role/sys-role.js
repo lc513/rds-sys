@@ -43,7 +43,6 @@ var SysRole = {
     input: {
         init: function (ct) {
             ctx = ct;
-            alert(111);
             SysRole.input.initComponent();
             SysRole.input.initForm();
         },

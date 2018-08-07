@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -63,18 +64,24 @@ public class SysJournalServiceImpl implements SysJournalService {
     }
 
     @Override
-    public BaseResult addJournal(SysJournal sysJournal) {
+    public BaseResult addJournal(SysJournalForm sysJournal) {
 
         try {
+            Date date = sysJournal.getjDate();
+            if (date ==null){
+                return BaseResult.fail("日期没有选择");
+            }
             //获取登录用户ID
             Subject subject = SecurityUtils.getSubject();
             ShiroUser principal = (ShiroUser) subject.getPrincipal();
             Long userId = principal.getId();
+            sysJournal.setId(null);
             sysJournal.setuId(userId);
             SysJournalExample sysJournalExample = new SysJournalExample();
             SysJournalExample.Criteria criteria = sysJournalExample.createCriteria();
             criteria.andUIdEqualTo(userId);
-            criteria.andJDateBetween(DateUtil.getDaybyNow(0), DateUtil.getDaybyNow(1));
+            Date daybyDAY = DateUtil.getDaybyDAY(date, 0);
+            criteria.andJDateBetween(DateUtil.getDaybyDAY(date,0), DateUtil.getDaybyDAY(date,1));
             List<SysJournal> sysJournals = sysJournalMapper.selectByExample(sysJournalExample);
             if (sysJournals.size() == 0) {
                 sysJournalMapper.insertSelective(sysJournal);
@@ -83,13 +90,18 @@ public class SysJournalServiceImpl implements SysJournalService {
                 return BaseResult.fail("当日日志已经添加");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return BaseResult.fail(BaseResult.CODE_FAIL_MESSAGE, e);
         }
     }
 
     @Override
-    public BaseResult updateJournal(SysJournal sysJournal) {
+    public BaseResult updateJournal(SysJournalForm sysJournal) {
         try {
+            Date date = sysJournal.getjDate();
+            if (date ==null){
+                return BaseResult.fail("日期没有选择");
+            }
             //获取登录用户ID
             Subject subject = SecurityUtils.getSubject();
             ShiroUser principal = (ShiroUser) subject.getPrincipal();
@@ -107,20 +119,21 @@ public class SysJournalServiceImpl implements SysJournalService {
             if (sysJournals.size() == 0) {
                 return BaseResult.fail("当日日志不存在");
             } else {
-                Integer examine = sysJournals.get(0).getExamine();
-                if (examine == 1) {
+                int examine = sysJournals.get(0).getExamine();
+                if (1 == examine) {
                     return BaseResult.fail("已经审核的日志无法修改");
                 }
-                sysJournalMapper.updateByPrimaryKey(sysJournal);
+                sysJournalMapper.updateByPrimaryKeySelective(sysJournal);
                 return BaseResult.ok(BaseResult.CODE_OK_MESSAGE, null);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return BaseResult.fail(BaseResult.CODE_FAIL_MESSAGE, e);
         }
     }
 
     @Override
-    public BaseResult deleteJournal(SysJournal sysJournal) {
+    public BaseResult deleteJournal(SysJournalForm sysJournal) {
 
         try {
             Long id = sysJournal.getId();

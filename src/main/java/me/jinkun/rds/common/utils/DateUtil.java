@@ -53,6 +53,15 @@ public class DateUtil {
 		date = calendar.getTime();
 		return date;
 	}
+	public static Date getDaybyDAY(Date date ,int num) {
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+//		Date date=new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_MONTH, num);
+		date = calendar.getTime();
+		return date;
+	}
 
 	/**
 	 * 获取YYYYMMDD格式

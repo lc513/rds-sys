@@ -9,9 +9,9 @@ import java.util.List;
 public interface SysJournalService {
     BaseResult getJournal(SysJournalForm sysJournal, int offset, int limit);
 
-    BaseResult addJournal(SysJournal sysJournal);
+    BaseResult addJournal(SysJournalForm sysJournal);
 
-    BaseResult deleteJournal(SysJournal sysJournal);
+    BaseResult deleteJournal(SysJournalForm sysJournal);
 
-    BaseResult updateJournal(SysJournal sysJournal);
+    BaseResult updateJournal(SysJournalForm sysJournal);
 }
