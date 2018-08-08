@@ -1,14 +1,17 @@
 package me.jinkun.rds.sys.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class GwSupplier {
     private Long id;
 
     private String name;
+    private String text;
 
     private Integer sort;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
 
     public Long getId() {
@@ -41,5 +44,13 @@ public class GwSupplier {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

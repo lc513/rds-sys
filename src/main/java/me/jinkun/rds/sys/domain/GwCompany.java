@@ -1,5 +1,7 @@
 package me.jinkun.rds.sys.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class GwCompany {
@@ -11,6 +13,7 @@ public class GwCompany {
 
     private Long parentId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
 
     public Long getId() {

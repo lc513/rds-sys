@@ -1,5 +1,7 @@
 package me.jinkun.rds.sys.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class GwCheckTemp {
@@ -15,6 +17,7 @@ public class GwCheckTemp {
 
     private String remark;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
 
     public Long getId() {

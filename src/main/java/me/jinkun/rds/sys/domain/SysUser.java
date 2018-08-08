@@ -1,5 +1,7 @@
 package me.jinkun.rds.sys.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -39,9 +41,11 @@ public class SysUser implements Serializable {
     //删除标记，数据库字段为：sys_user.del_flag
     private Integer delFlag;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     //更新时间，数据库字段为：sys_user.update_time
     private Date updateTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     //创建时间，数据库字段为：sys_user.create_time
     private Date createTime;
 

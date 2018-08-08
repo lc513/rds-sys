@@ -113,7 +113,7 @@ var SysJournal = {
                     {field: 'workDuration', title: '工作时长', width: '13.571%', hidden: false},
                     {field: 'workDesc', title: '工作内容', width: '13.571%', hidden: false},
                     {field: 'overTime', title: '加班时长', width: '13.571%', hidden: false},
-                    {field: 'overDesc', title: '加班内容', width: '13.571%', hidden: true},
+                    {field: 'overDesc', title: '加班内容', width: '13.571%', hidden: false},
                     {field: 'examine', title: '是否审查', width: '13.571%', hidden: false,
                         formatter:function(value,row,index){return value==1?'是':'否';}
                     },

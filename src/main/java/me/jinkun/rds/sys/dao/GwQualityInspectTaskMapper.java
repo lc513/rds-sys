@@ -3,6 +3,7 @@ package me.jinkun.rds.sys.dao;
 import java.util.List;
 import me.jinkun.rds.sys.domain.GwQualityInspectTask;
 import me.jinkun.rds.sys.domain.GwQualityInspectTaskExample;
+import me.jinkun.rds.sys.web.form.GwQualityInspectTaskForm;
 import org.apache.ibatis.annotations.Param;
 
 public interface GwQualityInspectTaskMapper {
@@ -17,6 +18,7 @@ public interface GwQualityInspectTaskMapper {
     int insertSelective(GwQualityInspectTask record);
 
     List<GwQualityInspectTask> selectByExample(GwQualityInspectTaskExample example);
+    List<GwQualityInspectTask> selectCarrySonByExample(GwQualityInspectTaskForm gwQualityInspectTaskForm);
 
     GwQualityInspectTask selectByPrimaryKey(Long id);
 
