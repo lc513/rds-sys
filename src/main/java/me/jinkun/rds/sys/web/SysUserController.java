@@ -86,4 +86,9 @@ public class SysUserController {
     public Object menuTree(@PathVariable("id") Long id) {
         return sysUserService.menuTree(id);
     }
+    @RequestMapping(value = "/sys/users/tree", method = RequestMethod.GET)
+    @ResponseBody
+    public Object menuTree() {
+        return sysUserService.tree();
+    }
 }

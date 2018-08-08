@@ -381,4 +381,26 @@ public class SysUserServiceImpl implements SysUserService {
         }
         return idList;
     }
+
+    @Override
+    public List<Tree> tree() {
+        List<SysUser> sysUsers = sysUserMapper.selectByExample(null);
+        List<Tree> trees = orgListToTreeList(sysUsers);
+        return trees;
+    }
+    private List<Tree> orgListToTreeList(List<SysUser> sysUsers) {
+        List<Tree> treeList = new ArrayList<Tree>();
+        if (sysUsers != null && sysUsers.size() > 0) {
+            for (SysUser sysUser : sysUsers) {
+                treeList.add(orgToTree(sysUser));
+            }
+        }
+        return treeList;
+    }
+    private Tree orgToTree(SysUser sysUser) {
+        Tree tree = new Tree();
+        tree.setId(sysUser.getId());
+        tree.setText(sysUser.getLoginName());
+        return tree;
+    }
 }

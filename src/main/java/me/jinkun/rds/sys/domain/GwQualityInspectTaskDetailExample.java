@@ -745,63 +745,123 @@ public class GwQualityInspectTaskDetailExample {
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeIsNull() {
-            addCriterion("task_time is null");
+        public Criteria andTaskStimeIsNull() {
+            addCriterion("task_stime is null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeIsNotNull() {
-            addCriterion("task_time is not null");
+        public Criteria andTaskStimeIsNotNull() {
+            addCriterion("task_stime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeEqualTo(Date value) {
-            addCriterion("task_time =", value, "taskTime");
+        public Criteria andTaskStimeEqualTo(Date value) {
+            addCriterion("task_stime =", value, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeNotEqualTo(Date value) {
-            addCriterion("task_time <>", value, "taskTime");
+        public Criteria andTaskStimeNotEqualTo(Date value) {
+            addCriterion("task_stime <>", value, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeGreaterThan(Date value) {
-            addCriterion("task_time >", value, "taskTime");
+        public Criteria andTaskStimeGreaterThan(Date value) {
+            addCriterion("task_stime >", value, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("task_time >=", value, "taskTime");
+        public Criteria andTaskStimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("task_stime >=", value, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeLessThan(Date value) {
-            addCriterion("task_time <", value, "taskTime");
+        public Criteria andTaskStimeLessThan(Date value) {
+            addCriterion("task_stime <", value, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeLessThanOrEqualTo(Date value) {
-            addCriterion("task_time <=", value, "taskTime");
+        public Criteria andTaskStimeLessThanOrEqualTo(Date value) {
+            addCriterion("task_stime <=", value, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeIn(List<Date> values) {
-            addCriterion("task_time in", values, "taskTime");
+        public Criteria andTaskStimeIn(List<Date> values) {
+            addCriterion("task_stime in", values, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeNotIn(List<Date> values) {
-            addCriterion("task_time not in", values, "taskTime");
+        public Criteria andTaskStimeNotIn(List<Date> values) {
+            addCriterion("task_stime not in", values, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeBetween(Date value1, Date value2) {
-            addCriterion("task_time between", value1, value2, "taskTime");
+        public Criteria andTaskStimeBetween(Date value1, Date value2) {
+            addCriterion("task_stime between", value1, value2, "taskStime");
             return (Criteria) this;
         }
 
-        public Criteria andTaskTimeNotBetween(Date value1, Date value2) {
-            addCriterion("task_time not between", value1, value2, "taskTime");
+        public Criteria andTaskStimeNotBetween(Date value1, Date value2) {
+            addCriterion("task_stime not between", value1, value2, "taskStime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeIsNull() {
+            addCriterion("task_etime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeIsNotNull() {
+            addCriterion("task_etime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeEqualTo(Date value) {
+            addCriterion("task_etime =", value, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeNotEqualTo(Date value) {
+            addCriterion("task_etime <>", value, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeGreaterThan(Date value) {
+            addCriterion("task_etime >", value, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("task_etime >=", value, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeLessThan(Date value) {
+            addCriterion("task_etime <", value, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeLessThanOrEqualTo(Date value) {
+            addCriterion("task_etime <=", value, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeIn(List<Date> values) {
+            addCriterion("task_etime in", values, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeNotIn(List<Date> values) {
+            addCriterion("task_etime not in", values, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeBetween(Date value1, Date value2) {
+            addCriterion("task_etime between", value1, value2, "taskEtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaskEtimeNotBetween(Date value1, Date value2) {
+            addCriterion("task_etime not between", value1, value2, "taskEtime");
             return (Criteria) this;
         }
 

@@ -47,7 +47,7 @@
 		<table tableName="rank" domainObjectName="Rank"></table>
 		<table tableName="task" domainObjectName="Task"></table>
 		<table tableName="sys_project" domainObjectName="SysProject"></table> -->
-		<table tableName="gw_supplier1" domainObjectName="GwSupplier1"></table>
+		<table tableName="gw_quality_inspect_task_detail1" domainObjectName="GwQualityInspectTaskDetail1"></table>
 		<!--<table tableName="gw_supplier" domainObjectName="GwSupplier"></table>-->
 		<!--<table tableName="gw_company" domainObjectName="GwCompany"></table>-->
 		<!--<table tableName="gw_check_classify" domainObjectName="GwCheckClassify"></table>-->

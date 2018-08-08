@@ -23,7 +23,9 @@ public class GwQualityInspectTaskDetail {
 
     private Boolean isChecked;
 
-    private Date taskTime;
+    private Date taskStime;
+
+    private Date taskEtime;
 
     private Integer sort;
 
@@ -111,12 +113,20 @@ public class GwQualityInspectTaskDetail {
         this.isChecked = isChecked;
     }
 
-    public Date getTaskTime() {
-        return taskTime;
+    public Date getTaskStime() {
+        return taskStime;
     }
 
-    public void setTaskTime(Date taskTime) {
-        this.taskTime = taskTime;
+    public void setTaskStime(Date taskStime) {
+        this.taskStime = taskStime;
+    }
+
+    public Date getTaskEtime() {
+        return taskEtime;
+    }
+
+    public void setTaskEtime(Date taskEtime) {
+        this.taskEtime = taskEtime;
     }
 
     public Integer getSort() {

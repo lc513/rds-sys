@@ -71,4 +71,6 @@ public interface SysUserService {
     List<Tree> menuTree(Long id);
 
     BaseResult logout();
+
+    List<Tree> tree();
 }

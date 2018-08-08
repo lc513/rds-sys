@@ -18,7 +18,6 @@ public interface GwQualityInspectTaskMapper {
     int insertSelective(GwQualityInspectTask record);
 
     List<GwQualityInspectTask> selectByExample(GwQualityInspectTaskExample example);
-    List<GwQualityInspectTask> selectCarrySonByExample(GwQualityInspectTaskForm gwQualityInspectTaskForm);
 
     GwQualityInspectTask selectByPrimaryKey(Long id);
 
@@ -29,4 +28,6 @@ public interface GwQualityInspectTaskMapper {
     int updateByPrimaryKeySelective(GwQualityInspectTask record);
 
     int updateByPrimaryKey(GwQualityInspectTask record);
+
+    List<GwQualityInspectTask> selectCarrySonByExample(GwQualityInspectTaskForm gwQualityInspectTaskForm);
 }

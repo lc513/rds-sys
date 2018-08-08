@@ -775,6 +775,66 @@ public class GwQualityInspectTaskExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsGenerateIsNull() {
+            addCriterion("is_generate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateIsNotNull() {
+            addCriterion("is_generate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateEqualTo(Boolean value) {
+            addCriterion("is_generate =", value, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateNotEqualTo(Boolean value) {
+            addCriterion("is_generate <>", value, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateGreaterThan(Boolean value) {
+            addCriterion("is_generate >", value, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_generate >=", value, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateLessThan(Boolean value) {
+            addCriterion("is_generate <", value, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_generate <=", value, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateIn(List<Boolean> values) {
+            addCriterion("is_generate in", values, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateNotIn(List<Boolean> values) {
+            addCriterion("is_generate not in", values, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_generate between", value1, value2, "isGenerate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsGenerateNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_generate not between", value1, value2, "isGenerate");
+            return (Criteria) this;
+        }
+
         public Criteria andRemarkIsNull() {
             addCriterion("remark is null");
             return (Criteria) this;

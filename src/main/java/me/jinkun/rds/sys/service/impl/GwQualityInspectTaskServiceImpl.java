@@ -99,10 +99,13 @@ public class GwQualityInspectTaskServiceImpl implements GwQualityInspectTaskServ
             if (inspectorId==null||inspectorId==0l){
                 return BaseResult.fail("检查人员未指定");
             }
+            gwQualityInspectTaskForm.setCreateTime(new Date());
+            gwQualityInspectTaskForm.setSort((int) mapper.countByExample(null));
             mapper.insert(gwQualityInspectTaskForm);
             return BaseResult.ok(BaseResult.CODE_OK_MESSAGE);
         }catch (Exception e){
-            return BaseResult.fail("检查人员未指定",e);
+            e.printStackTrace();
+            return BaseResult.fail("请求错误",e);
         }
     }
 }

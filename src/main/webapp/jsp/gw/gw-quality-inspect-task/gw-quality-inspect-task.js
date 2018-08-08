@@ -1,16 +1,30 @@
 var ctx = "";//项目部署的工程名
 var QualityInspectTaskList;
+var QualityInspectTaskDetailList;
 var QualityInspectTaskEdit;
+var QualityInspectTaskDetailEdit;
 var QualityInspectTaskForm;
 var SupplierList;
 
 //其它组件
 var ctIdSelect;//检查模板
+var cIdSelect;//所属部门
+var uIdSelect;//所属部门
+var inspectorIdSelect;//所属部门
+var sId;//受检项目
+var sName;//受检项目
 
 var QualityInspectTask = {
+    data:{
+        SupplierId: 1,
+        SupplierName:"苏州市阳澄湖半岛游客中心",
+    },
     URL: {
         inputUI: function () {
             return ctx + "/QualityInspectTask/ui/input";
+        },
+        inputDetialUI: function () {
+            return ctx + "/QualityInspectTask/ui/input-detail";
         },
         listUI: function () {
             return ctx + "/journal/topage/list";
@@ -18,14 +32,23 @@ var QualityInspectTask = {
         list: function () {
             return ctx + "/QualityInspectTask/list";
         },
+        detailList: function () {
+            return ctx + "/QualityInspectTaskDetail/list";
+        },
         update: function () {
             return ctx + "/journal/update";
         },
         add: function () {
-            return ctx + "/journal/add";
+            return ctx + "/QualityInspectTask/addTask";
         },
-        project: function () {
-            return ctx + "/project/tree";
+        checkTempTree: function () {
+            return ctx + "/GwCheckTemp/tree";
+        },
+        companyTree: function () {
+            return ctx + "/Company/tree";
+        },
+        userTree: function () {
+            return ctx + "/sys/users/tree";
         },
         delete: function (ids) {
             return ctx + "/journal/delete" + ids;
@@ -44,6 +67,11 @@ var QualityInspectTask = {
         initComponent: function () {
             QualityInspectTaskForm = $("#QualityInspectTaskForm");
             ctIdSelect = $("#ctIdSelect");
+            cIdSelect = $("#cIdSelect");
+            uIdSelect = $("#uIdSelect");
+            inspectorIdSelect = $("#inspectorIdSelect");
+            sName = $("#sName");
+            sId = $("#sId");
         },
         //edit时候调用
         initForm: function () {
@@ -80,16 +108,25 @@ var QualityInspectTask = {
             QualityInspectTask.list.initSupplierList();
             QualityInspectTask.list.initList(null);
         },
+        initDetail: function (ct) {
+            ctx = ct;
+            QualityInspectTask.list.initDetailComponent();
+
+
+        },
         initComponent: function () {
             QualityInspectTaskList = $("#QualityInspectTaskList");
             QualityInspectTaskEdit = $('#QualityInspectTaskEdit');
             SupplierList = $("#SupplierList");
         },
+        initDetailComponent: function () {
+            QualityInspectTaskDetailList = $("#QualityInspectTaskDetailList");
+            QualityInspectTaskDetailEdit = $('#QualityInspectTaskDetailEdit');
+        },
         initSupplierList: function () {
             SupplierList.tree({
                 url: '/Supplier/tree',
                 onClick: function (node) {
-                    // alert(node.id);  // alert node text property when clicked
                     QualityInspectTask.list.initList(node.id);
                 }
             });
@@ -194,6 +231,7 @@ var QualityInspectTask = {
                 onClickRow: function (index, row) {
                     QualityInspectTaskList.datagrid("unselectAll");
                     QualityInspectTaskList.datagrid("selectRow", index);
+                    QualityInspectTask.list.detail(index);
                 },
                 onLoadSuccess: function (data) {
                     console.log(data);
@@ -215,10 +253,33 @@ var QualityInspectTask = {
                 href: QualityInspectTask.URL.inputUI(),
                 width: 600,
                 height: 450,
+                title:"新增计划",
                 onLoad: function () {
+                    // var sels = QualityInspectTaskList.datagrid("getSelections");
+                    // QualityInspectTaskForm.form("load",sels[0]);
+                    // sName.val(QualityInspectTask.data.SupplierName);
+                    sName.textbox('setValue',QualityInspectTask.data.SupplierName);
+                    sId.val(QualityInspectTask.data.SupplierId);
                     //检查模板
                     ctIdSelect.combotree({
-                        url: QualityInspectTask.URL.project(),
+                        url: QualityInspectTask.URL.checkTempTree(),
+                        method: 'get',
+                        panelHeight: 'auto'
+                    });
+                    //所属部门
+                    cIdSelect.combotree({
+                        url: QualityInspectTask.URL.companyTree(),
+                        method: 'get',
+                        panelHeight: 'auto'
+                    });
+
+                    uIdSelect.combotree({
+                        url: QualityInspectTask.URL.userTree(),
+                        method: 'get',
+                        panelHeight: 'auto'
+                    });
+                    inspectorIdSelect.combotree({
+                        url: QualityInspectTask.URL.userTree(),
                         method: 'get',
                         panelHeight: 'auto'
                     });
@@ -228,51 +289,8 @@ var QualityInspectTask = {
         },
         //改
         edit: function () {
-            var sels = QualityInspectTaskList.treegrid("getSelections");
-            if (sels.length < 1) {
-                $.messager.alert("对话框", "至少选择一行");
-                return;
-            }
+            return false;
 
-            if (sels.length > 1) {
-                $.messager.alert("对话框", "只能选择一行");
-                return;
-            }
-
-            QualityInspectTaskEdit.dialog({
-                href: QualityInspectTask.URL.inputUI(),
-                onLoad: function () {
-                    //方案一：使用Form的load去load数据
-                    //QualityInspectTaskForm.form("load", QualityInspectTask.URL.get(sels[0].id));
-                    //方案二：直接使用列表的row数据
-                    //项目数据
-                    ctIdSelect.combotree({
-                        url: QualityInspectTask.URL.project(),
-                        method: 'get',
-                        panelHeight: 'auto'
-                    });
-                    QualityInspectTaskForm.form("load", sels[0]);
-                    //方案三：使用Ajax请求数据
-                    // $.ajax({
-                    //     type: "GET",
-                    //     url: QualityInspectTask.URL.get(sels[0].id),
-                    //     success: function (data) {
-                    //         if (data.code == 200) {
-                    //             QualityInspectTaskForm.form("load", data.data);
-                    //             ctIdSelect.combotree({
-                    //                 url: QualityInspectTask.URL.update(),
-                    //                 method: 'get',
-                    //                 panelHeight: 'auto',
-                    //                 onLoadSuccess: function () {
-                    //                     ctIdSelect.combotree('setValue', data.data.pid);
-                    //                 }
-                    //             });
-                    //         }
-                    //     }
-                    // });
-                }
-            })
-                .dialog("open");
         },
         //删
         delete: function () {
@@ -319,6 +337,98 @@ var QualityInspectTask = {
             QualityInspectTaskList.treegrid("clearChecked");
             QualityInspectTaskList.treegrid("clearSelections");
         },
+        //详情弹框
+        detail: function(index){
+
+            QualityInspectTaskEdit.dialog({
+                href: QualityInspectTask.URL.inputDetialUI(),
+                title:"查看任务",
+                onLoad: function () {
+                    var sels = QualityInspectTaskList.datagrid("getSelections");
+                    console.log(sels);
+                    var generate = sels[index].generate;
+                    if (generate) {
+                        //请求详情数据
+                        QualityInspectTask.list.initDetailList(sels[index].id);
+                        $("#generate").css("display","none");
+                        $("#tableDetail").css("display","block");
+                    }else {
+                        QualityInspectTask.list.initDetailList(sels[index].id);
+                        $("#generate").css("display","block");
+                        $("#tableDetail").css("display","none");
+                    }
+                }
+            })
+                .dialog("open");
+        },
+        generate :function(){
+            //按批次生成
+            $.ajax({
+                type: "GET",
+                url: "/sys/users/menu/top",
+                success: function (data) {
+                    if (data.code == 200) {
+
+                    }
+                }
+            });
+        },
+        initDetailList: function (supplierId) {
+            QualityInspectTaskDetailList.datagrid({
+                url: QualityInspectTask.URL.detailList()+"/"+supplierId,
+                method: 'get',
+                pagination: true,
+                pageSize: 30,
+                toolbar: '#QualityInspectTaskDetailToolbar',//SysUser.list.toolbar,
+                singleSelect: false,
+                collapsible: false,
+                columns: [[
+                    {field: 'ck', checkbox: true},
+                    {field: 'id', title: '主键id', hidden: true},
+                    {field: 'checkProject', title: '检查项目', width: '15%', hidden: false},
+                    {field: 'checkPoint', title: '检查点', width: '8%', hidden: false},
+                    {field: 'frequency', title: '频次', width: '10%', hidden: false},
+                    {field: 'qualified', title: '是否合格', width: '5%', hidden: false},
+                    {field: 'score', title: '得分/总分', width: '6%', hidden: false},
+                    {field: 'checkTime', title: '检查时间', width: '10%', hidden: false},
+                    {field: 'checkUser', title: '检查人', width: '10%', hidden: false},
+                    {field: 'isChecked', title: '是否检查', width: '5%', hidden: false},
+                    {field: 'taskStime', title: '开始时间', width: '10%', hidden: false},
+                    {field: 'taskEtime', title: '结束时间', width: '10%', hidden: false},
+                    {field: 'enclosure', title: '附件', width: '5%', hidden: false},
+                    // {field: 'ctId', title: '检查模板', width: '13%', hidden: false,
+                    //     formatter: function (value, row, index) {
+                    //         if (row.gwCheckTemp){
+                    //             return row.gwCheckTemp.name;
+                    //         }
+                    //         return value;
+                    //     }
+                    // },
+                    // {field: 'year', title: '计划年份', width: '5%', hidden: false},
+                    // {
+                    //     field: 'startTime',
+                    //     title: '开始时间',
+                    //     width: '10%',
+                    //     hidden: false,
+                    //     formatter: function (value, row, index) {
+                    //         var unixTimestamp = new Date(value);
+                    //         return unixTimestamp.toLocaleString();
+                    //     }
+                    // }
+                ]],
+                //设置选中事件，清除之前的行选择
+                onClickRow: function (index, row) {
+                    QualityInspectTaskDetailList.datagrid("unselectAll");
+                    QualityInspectTaskDetailList.datagrid("selectRow", index);
+                },
+                onLoadSuccess: function (data) {
+                    console.log(data);
+                },
+            });
+        },
+
+
+
         //搜索
         search: function () {
             var searchName = [];

@@ -1,5 +1,7 @@
 package me.jinkun.rds.sys.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class GwQualityInspectTaskResult {
@@ -13,6 +15,7 @@ public class GwQualityInspectTaskResult {
 
     private Integer score;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date checkTime;
 
     private String checkSituation;

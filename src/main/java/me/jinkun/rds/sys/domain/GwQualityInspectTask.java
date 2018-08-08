@@ -20,15 +20,17 @@ public class GwQualityInspectTask {
 
     private Long uId;
 
+    private boolean isGenerate;
+
     private Long inspectorId;
 
     private String name;
 
     private Long year;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
 
     private Integer sort;
@@ -185,5 +187,13 @@ public class GwQualityInspectTask {
 
     public void setInspectorUser(SysUser inspectorUser) {
         this.inspectorUser = inspectorUser;
+    }
+
+    public boolean isGenerate() {
+        return isGenerate;
+    }
+
+    public void setGenerate(boolean generate) {
+        isGenerate = generate;
     }
 }

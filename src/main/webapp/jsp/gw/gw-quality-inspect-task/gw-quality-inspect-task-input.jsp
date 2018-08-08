@@ -7,7 +7,6 @@ Date: 2016-12-30
 <form id="QualityInspectTaskForm" method="post">
      <table class="com_table"  align="center">
         <input type="hidden" name="id">
-        <input type="hidden" name="uId">
         <tr>
             <td></td>
             <td><label>计划名称:</label></td>
@@ -42,6 +41,12 @@ Date: 2016-12-30
         </tr>
          <tr>
              <td></td>
+             <td><label>编制人:</label></td>
+             <td><select class="easyui-combobox com_input"  id="uIdSelect"  name="uId" data-options="required:true,textField:'text',valueField:'uId'"></select></td>
+             <td></td>
+         </tr>
+         <tr>
+             <td></td>
              <td><label>所属部门:</label></td>
              <td><select class="easyui-combobox com_input"  id="cIdSelect"  name="cId" data-options="required:true,textField:'text',valueField:'cId'"></select></td>
              <td></td>
@@ -49,13 +54,14 @@ Date: 2016-12-30
          <tr>
              <td></td>
              <td><label>受检项目:</label></td>
-             <td><input class="easyui-textbox com_input" name="sId" data-options="required:true"/></td>
+             <td><input class="easyui-textbox com_input" id="sName" data-options="required:true"/></td>
+             <input  name="sId" id="sId" type="hidden"/>
              <td></td>
          </tr>
          <tr>
              <td></td>
              <td><label>检查人:</label></td>
-             <td><input class="easyui-textbox com_input" name="inspectorId" data-options="required:true"/></td>
+             <td><select class="easyui-combobox com_input"  id="inspectorIdSelect"  name="inspectorId" data-options="required:true,textField:'text',valueField:'inspectorId'"></select></td>
              <td></td>
          </tr>
     </table>

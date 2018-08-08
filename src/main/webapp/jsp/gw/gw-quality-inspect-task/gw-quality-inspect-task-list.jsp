@@ -18,7 +18,7 @@ Date: 2016-12-30
         <div>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" plain="true" onclick="javascript:QualityInspectTask.list.add()">增加</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" plain="true" onclick="javascript:QualityInspectTask.list.delete()">删除</a>
-            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" plain="true" onclick="javascript:QualityInspectTask.list.edit()">编辑</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'" plain="true" onclick="javascript:QualityInspectTask.list.edit()">详情</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" plain="true" onclick="javascript:QualityInspectTask.list.reload()">刷新</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-standard-plugin-delete'" plain="true" onclick="javascript:QualityInspectTask.list.collapseAll()">折叠</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-standard-plugin-add'" plain="true" onclick="javascript:QualityInspectTask.list.expandAll()">展开</a>
@@ -33,7 +33,7 @@ Date: 2016-12-30
     <table id="QualityInspectTaskList" data-options="border:false"  style="width:100%;overflow-x:hidden " title="组织机构"></table>
 </div>
 <!-- 弹窗  --> <!-- inline:true 不然多次打开tab会重复提交表单 -->
-<div id="QualityInspectTaskEdit" title="组织机构" style="width:500px;height:400px;top: 100px;padding: 10px;display: none" data-options="iconCls: 'icon-save',closed: true,modal: true,inline:true,buttons:[{text:'保存',iconCls:'icon-save',handler:function(){QualityInspectTask.input.submitForm()}},{text:'取消',iconCls:'icon-cancel',handler:function(){QualityInspectTask.input.close()}}]"  ></div>
+<div id="QualityInspectTaskEdit" title="新增计划" style="width:500px;height:400px;top: 100px;padding: 10px;display: none" data-options="iconCls: 'icon-save',closed: true,modal: true,inline:true,buttons:[{text:'保存',iconCls:'icon-save',handler:function(){QualityInspectTask.input.submitForm()}},{text:'取消',iconCls:'icon-cancel',handler:function(){QualityInspectTask.input.close()}}]"  ></div>
 <script src="<%=request.getContextPath()%>/jsp/gw/gw-quality-inspect-task/gw-quality-inspect-task.js"></script>
 <script>
     QualityInspectTask.list.init('<%=request.getContextPath()%>');
