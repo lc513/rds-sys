@@ -14,14 +14,15 @@ public class GwQualityInspectTaskDetailController {
     /**
      * 获取计划详情
      * @param taskId
-     * @param offset
-     * @param limit
+     * @param page
+     * @param rows
      * @return
      */
     @RequestMapping("/list/{taskId}")
     @ResponseBody
-    public Object list(@PathVariable Long taskId, @RequestParam(defaultValue = "1") int offset, @RequestParam(defaultValue = "10") int limit){
-        return gwQualityInspectTaskDetailService.list(taskId,offset,limit);
+    public Object list(@PathVariable Long taskId, @RequestParam int page, @RequestParam int rows){
+        System.out.println(page+"---"+rows);
+        return gwQualityInspectTaskDetailService.list(taskId,page,rows);
     }
 
     /**
@@ -31,8 +32,8 @@ public class GwQualityInspectTaskDetailController {
      */
     @RequestMapping("/generate")
     @ResponseBody
-    public Object generate(@ModelAttribute Long taskId){
+    public Object generate(@RequestParam Long taskId){
 
-        return gwQualityInspectTaskDetailService.generate(taskId);
+        return gwQualityInspectTaskDetailService.insertGenerate(taskId);
     }
 }

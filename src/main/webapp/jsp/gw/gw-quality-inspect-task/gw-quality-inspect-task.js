@@ -18,6 +18,8 @@ var QualityInspectTask = {
     data:{
         SupplierId: 1,
         SupplierName:"苏州市阳澄湖半岛游客中心",
+        taskId:0,
+        generate:false,
     },
     URL: {
         inputUI: function () {
@@ -231,7 +233,7 @@ var QualityInspectTask = {
                 onClickRow: function (index, row) {
                     QualityInspectTaskList.datagrid("unselectAll");
                     QualityInspectTaskList.datagrid("selectRow", index);
-                    QualityInspectTask.list.detail(index);
+                    QualityInspectTask.list.detail();
                 },
                 onLoadSuccess: function (data) {
                     console.log(data);
@@ -338,35 +340,55 @@ var QualityInspectTask = {
             QualityInspectTaskList.treegrid("clearSelections");
         },
         //详情弹框
-        detail: function(index){
+        detail: function(){
 
             QualityInspectTaskEdit.dialog({
                 href: QualityInspectTask.URL.inputDetialUI(),
                 title:"查看任务",
+                width:1200,
+                height:600,
                 onLoad: function () {
                     var sels = QualityInspectTaskList.datagrid("getSelections");
-                    console.log(sels);
-                    var generate = sels[index].generate;
+                    console.log(sels[0]);
+                    var generate = false;
+                    try{
+                        generate = sels[0].generate;
+                    }catch(err){
+                        // console.log(err.stack);
+                    }
+
+                    QualityInspectTask.data.SupplierId = sels[0].sId;
+                    QualityInspectTask.data.taskId = sels[0].id;
+                    QualityInspectTask.data.generate = generate;
+                    // alert(QualityInspectTask.data.taskId);
                     if (generate) {
                         //请求详情数据
-                        QualityInspectTask.list.initDetailList(sels[index].id);
-                        $("#generate").css("display","none");
-                        $("#tableDetail").css("display","block");
+                        QualityInspectTask.list.initDetailList(sels[0].id);
+                        // $("#generate").css("display","none");
+                        // $("#tableDetail").css("display","block");
+                        $("#generate .l-btn-text").text("已生成");
                     }else {
-                        QualityInspectTask.list.initDetailList(sels[index].id);
-                        $("#generate").css("display","block");
-                        $("#tableDetail").css("display","none");
+                        QualityInspectTask.list.initDetailList(sels[0].id);
+                        $("#generate .l-btn-text").text("根据批次生成");
+                        // $("#generate").css("display","block");
+                        // $("#tableDetail").css("display","none");
                     }
                 }
             })
                 .dialog("open");
         },
         generate :function(){
+            if (QualityInspectTask.data.generate) {
+                return;
+            }
+            var taskId = QualityInspectTask.data.taskId;
             //按批次生成
             $.ajax({
                 type: "GET",
-                url: "/sys/users/menu/top",
+                url: "/QualityInspectTaskDetail/generate",
+                data:{'taskId':taskId},
                 success: function (data) {
+                    console.log(data);
                     if (data.code == 200) {
 
                     }
@@ -390,11 +412,26 @@ var QualityInspectTask = {
                     {field: 'frequency', title: '频次', width: '10%', hidden: false},
                     {field: 'qualified', title: '是否合格', width: '5%', hidden: false},
                     {field: 'score', title: '得分/总分', width: '6%', hidden: false},
-                    {field: 'checkTime', title: '检查时间', width: '10%', hidden: false},
+                    {field: 'checkTime', title: '检查时间', width: '10%', hidden: false,
+                        formatter: function (value, row, index) {
+                            var unixTimestamp = new Date(value);
+                            return unixTimestamp.toLocaleString();
+                        }
+                    },
                     {field: 'checkUser', title: '检查人', width: '10%', hidden: false},
                     {field: 'isChecked', title: '是否检查', width: '5%', hidden: false},
-                    {field: 'taskStime', title: '开始时间', width: '10%', hidden: false},
-                    {field: 'taskEtime', title: '结束时间', width: '10%', hidden: false},
+                    {field: 'taskStime', title: '开始时间', width: '10%', hidden: false,
+                            formatter: function (value, row, index) {
+                                var unixTimestamp = new Date(value);
+                                return unixTimestamp.toLocaleString();
+                            }
+                    },
+                    {field: 'taskEtime', title: '结束时间', width: '10%', hidden: false,
+                        formatter: function (value, row, index) {
+                            var unixTimestamp = new Date(value);
+                            return unixTimestamp.toLocaleString();
+                        }
+                    },
                     {field: 'enclosure', title: '附件', width: '5%', hidden: false},
                     // {field: 'ctId', title: '检查模板', width: '13%', hidden: false,
                     //     formatter: function (value, row, index) {

@@ -14,7 +14,7 @@ public interface GwQualityInspectTaskDetailMapper {
 
     int insert(GwQualityInspectTaskDetail record);
 
-    int insertSelective(GwQualityInspectTaskDetail record);
+    long insertSelective(GwQualityInspectTaskDetail record);
 
     List<GwQualityInspectTaskDetail> selectByExample(GwQualityInspectTaskDetailExample example);
 

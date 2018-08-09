@@ -3,35 +3,35 @@ package me.jinkun.rds.sys.domain;
 import java.util.Date;
 
 public class GwQualityInspectTaskDetail {
-    private Long id;
+    private Long     id;
 
-    private Long qitId;
+    private Long     qitId;
 
-    private String checkProject;
+    private String   checkProject;
 
-    private String checkPoint;
+    private String   checkPoint;
 
-    private String frequency;
+    private String   frequency;
 
-    private Boolean qualified;
+    private Boolean  qualified;
 
-    private String score;
+    private String   score;
 
-    private Date checkTime;
+    private Date     checkTime;
 
-    private Long checkUser;
+    private Long     checkUser;
 
-    private Boolean isChecked;
+    private Boolean  isChecked;
 
-    private Date taskStime;
+    private Date     taskStime;
 
-    private Date taskEtime;
+    private Date     taskEtime;
 
-    private Integer sort;
+    private Integer  sort;
 
-    private String enclosure;
+    private String   enclosure;
 
-    private String remark;
+    private String   remark;
 
     public Long getId() {
         return id;

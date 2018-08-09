@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, cr_id, name, check, sort, frequency1, frequency_type, frequency2, remark, create_time
+    id, cr_id, name, `check`, sort, frequency1, frequency_type, frequency2, remark, create_time
   </sql>
   <select id="selectByExample" parameterType="me.jinkun.rds.sys.domain.GwCheckManagerExample" resultMap="BaseResultMap">
     select
@@ -106,11 +106,11 @@
   </delete>
   <insert id="insert" parameterType="me.jinkun.rds.sys.domain.GwCheckManager">
     insert into gw_check_manager (id, cr_id, name, 
-      check, sort, frequency1, 
+      `check`, sort, frequency1,
       frequency_type, frequency2, remark, 
       create_time)
     values (#{id,jdbcType=BIGINT}, #{crId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{check,jdbcType=BIT}, #{sort,jdbcType=INTEGER}, #{frequency1,jdbcType=INTEGER}, 
+      #{check,jdbcType=BIT}, #{sort,jdbcType=INTEGER}, #{frequency1,jdbcType=INTEGER},
       #{frequencyType,jdbcType=BIGINT}, #{frequency2,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
@@ -127,7 +127,7 @@
         name,
       </if>
       <if test="check != null">
-        check,
+        `check`,
       </if>
       <if test="sort != null">
         sort,
@@ -200,7 +200,7 @@
         name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.check != null">
-        check = #{record.check,jdbcType=BIT},
+        `check` = #{record.check,jdbcType=BIT},
       </if>
       <if test="record.sort != null">
         sort = #{record.sort,jdbcType=INTEGER},
@@ -230,7 +230,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       cr_id = #{record.crId,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
-      check = #{record.check,jdbcType=BIT},
+      `check` = #{record.check,jdbcType=BIT},
       sort = #{record.sort,jdbcType=INTEGER},
       frequency1 = #{record.frequency1,jdbcType=INTEGER},
       frequency_type = #{record.frequencyType,jdbcType=BIGINT},
@@ -251,7 +251,7 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="check != null">
-        check = #{check,jdbcType=BIT},
+        `check` = #{check,jdbcType=BIT},
       </if>
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
@@ -278,7 +278,7 @@
     update gw_check_manager
     set cr_id = #{crId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
-      check = #{check,jdbcType=BIT},
+      `check` = #{check,jdbcType=BIT},
       sort = #{sort,jdbcType=INTEGER},
       frequency1 = #{frequency1,jdbcType=INTEGER},
       frequency_type = #{frequencyType,jdbcType=BIGINT},

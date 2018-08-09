@@ -346,6 +346,8 @@ CREATE TABLE `gw_check_content` (
 -- 岗位自检 计划
 -- ----------------------------
 
+DROP TABLE IF EXISTS `gw_quality_inspect_task_result`;
+DROP TABLE IF EXISTS `gw_quality_inspect_task_detail`;
 DROP TABLE IF EXISTS `gw_quality_inspect_task`;
 CREATE TABLE `gw_quality_inspect_task` (
     `id` BIGINT(19) NOT NULL  AUTO_INCREMENT COMMENT '主键id',
@@ -359,6 +361,7 @@ CREATE TABLE `gw_quality_inspect_task` (
     `start_time` DATETIME NOT NULL COMMENT '开始时间',
     `end_time` DATETIME NOT NULL COMMENT '结束时间',
     `sort` INTEGER(5) DEFAULT NULL COMMENT '排序',
+    `is_generate` BOOLEAN DEFAULT NULL COMMENT '是否生成详情',
     `remark` VARCHAR(20) DEFAULT NULL COMMENT '备注',
     `create_time` DATETIME NOT NULL COMMENT '编制时间',
     FOREIGN KEY(`s_id`) REFERENCES `gw_supplier`(`id`) ,
@@ -373,7 +376,6 @@ CREATE TABLE `gw_quality_inspect_task` (
 -- 岗位自检 计划详情
 -- ----------------------------
 
-DROP TABLE IF EXISTS `gw_quality_inspect_task_detail`;
 CREATE TABLE `gw_quality_inspect_task_detail` (
     `id` BIGINT(19) NOT NULL  AUTO_INCREMENT COMMENT '主键id',
     `qit_id` BIGINT(19) DEFAULT NULL COMMENT '外键 岗位自检 计划id',
@@ -384,20 +386,33 @@ CREATE TABLE `gw_quality_inspect_task_detail` (
     `score` VARCHAR(20) DEFAULT NULL COMMENT '得分/总分',
     `check_time` DATETIME DEFAULT NULL COMMENT '检查时间',
     `check_user` BIGINT(19) DEFAULT NULL COMMENT '检查人',
-    `task_time` DATETIME NOT NULL COMMENT '计划时间',
+    `is_checked` BOOLEAN DEFAULT NULL COMMENT '是否检查',
+    `task_stime` DATETIME NOT NULL COMMENT '计划开始时间',
+    `task_etime` DATETIME NOT NULL COMMENT '计划结束时间',
     `sort` INTEGER(5) DEFAULT NULL COMMENT '排序',
-    `enclosure` VARCHAR(20) DEFAULT NULL COMMENT '附件地址',
+    `enclosure` VARCHAR(20) DEFAULT NULL COMMENT '附件',
     `remark` VARCHAR(20) DEFAULT NULL COMMENT '备注',
     FOREIGN KEY(`qit_id`) REFERENCES `gw_quality_inspect_task`(`id`) ,
     PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='岗位自检 计划详情';
 
 
-
-
-
-
-
+-- ----------------------------
+-- 岗位自检 检查内容及反馈
+-- ----------------------------
+CREATE TABLE `gw_quality_inspect_task_result` (
+    `id` BIGINT(19) NOT NULL  AUTO_INCREMENT COMMENT '主键id',
+    `qitd_id` BIGINT(19) DEFAULT NULL COMMENT '外键 岗位自检 计划详情id',
+    `check_content` VARCHAR(200) DEFAULT NULL COMMENT '检查内容',
+    `is_qualified` BOOLEAN DEFAULT NULL COMMENT '是否合格',
+    `score` INTEGER(5) DEFAULT NULL COMMENT '得分',
+    `check_time` DATETIME DEFAULT NULL COMMENT '检查时间',
+    `check_situation` VARCHAR(300) DEFAULT NULL COMMENT '检查情况',
+    `enclosure` VARCHAR(20) DEFAULT NULL COMMENT '附件地址',
+    `remark` VARCHAR(20) DEFAULT NULL COMMENT '备注',
+    FOREIGN KEY(`qitd_id`) REFERENCES `gw_quality_inspect_task_detail`(`id`) ,
+    PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='岗位自检 检查内容及反馈';
 
 
 

@@ -5,24 +5,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class GwQualityInspectTaskResult {
-    private Long id;
+    private Long      id;
 
-    private Long qitdId;
+    private Long      qitdId;
 
-    private String checkContent;
+    private String    checkContent;
 
-    private Boolean isQualified;
+    private Boolean   isQualified;
 
-    private Integer score;
+    private Integer   score;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private Date checkTime;
+    private Date      checkTime;
 
-    private String checkSituation;
+    private String    checkSituation;
 
-    private String enclosure;
+    private String    enclosure;
 
-    private String remark;
+    private String    remark;
 
     public Long getId() {
         return id;

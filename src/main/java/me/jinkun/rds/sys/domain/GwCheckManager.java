@@ -23,6 +23,9 @@ public class GwCheckManager {
 
     private Date createTime;
 
+    private String checkProject;
+    private String score;//  0/15
+
     public Long getId() {
         return id;
     }
@@ -101,5 +104,21 @@ public class GwCheckManager {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getCheckProject() {
+        return checkProject;
+    }
+
+    public void setCheckProject(String checkProject) {
+        this.checkProject = checkProject;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 }

@@ -64,6 +64,29 @@ public class DateUtil {
 	}
 
 	/**
+	 * 日期添加到分钟得到新时间(用于计算考试时间段)
+	 * @param day 开始时间
+	 * @param num		相隔分钟数（如开考的时间）
+	 * @return
+	 */
+	public static Date addDateDay(Date day, double num) {
+		//入参的格式
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 24小时制
+		Date date = day;
+		if (date == null)
+			return null;
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.MINUTE, (int) (num*24*60));// 24小时制
+		//得到结算后的结果 yyyy-MM-dd HH:mm
+		date = cal.getTime();
+		cal = null;
+		//转换结果的格式 HH:mm
+		return date;
+
+	}
+
+	/**
 	 * 获取YYYYMMDD格式
 	 * @return
 	 */
@@ -93,6 +116,23 @@ public class DateUtil {
 			return false;
 		}
 		return fomatDate(s).getTime() >=fomatDate(e).getTime();
+	}
+	/**
+	* @Title: compareDate
+	* @Description: TODO(日期比较， 返回true s早期 否则返回false e早期)
+	* @param s
+	* @param e
+	* @return boolean
+	* @throws
+	* @author fh
+	 */
+	public static boolean compareDate(Date s, Date e) {
+		if (s.before(e)){
+			//表示str1date小于str2date
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	/**
@@ -227,4 +267,45 @@ public class DateUtil {
 		return day;
     }
 
+	/**
+	 * 获取两个日期之间相差多少天
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static int differentDays(Date date1,Date date2)
+	{
+		Calendar cal1 = Calendar.getInstance();
+		cal1.setTime(date1);
+
+		Calendar cal2 = Calendar.getInstance();
+		cal2.setTime(date2);
+		int day1= cal1.get(Calendar.DAY_OF_YEAR);
+		int day2 = cal2.get(Calendar.DAY_OF_YEAR);
+
+		int year1 = cal1.get(Calendar.YEAR);
+		int year2 = cal2.get(Calendar.YEAR);
+		if(year1 != year2)   //同一年
+		{
+			int timeDistance = 0 ;
+			for(int i = year1 ; i < year2 ; i ++)
+			{
+				if(i%4==0 && i%100!=0 || i%400==0)    //闰年
+				{
+					timeDistance += 366;
+				}
+				else    //不是闰年
+				{
+					timeDistance += 365;
+				}
+			}
+
+			return timeDistance + (day2-day1) ;
+		}
+		else    //不同年
+		{
+			System.out.println("判断day2 - day1 : " + (day2-day1));
+			return day2-day1;
+		}
+	}
 }
