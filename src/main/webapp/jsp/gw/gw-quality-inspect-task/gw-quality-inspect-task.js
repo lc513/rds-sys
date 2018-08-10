@@ -3,6 +3,7 @@ var QualityInspectTaskList;
 var QualityInspectTaskDetailList;
 var QualityInspectTaskEdit;
 var QualityInspectTaskDetailEdit;
+var QualityInspectTaskResultList;
 var QualityInspectTaskForm;
 var SupplierList;
 
@@ -28,6 +29,9 @@ var QualityInspectTask = {
         inputDetialUI: function () {
             return ctx + "/QualityInspectTask/ui/input-detail";
         },
+        inputResultUI: function () {
+            return ctx + "/QualityInspectTask/ui/input-result";
+        },
         listUI: function () {
             return ctx + "/journal/topage/list";
         },
@@ -36,6 +40,9 @@ var QualityInspectTask = {
         },
         detailList: function () {
             return ctx + "/QualityInspectTaskDetail/list";
+        },
+        resultList: function () {
+            return ctx + "/GwQualityInspectTaskResult/list";
         },
         update: function () {
             return ctx + "/journal/update";
@@ -116,6 +123,12 @@ var QualityInspectTask = {
 
 
         },
+        initResult: function (ct) {
+            ctx = ct;
+            QualityInspectTask.list.initResultComponent();
+
+
+        },
         initComponent: function () {
             QualityInspectTaskList = $("#QualityInspectTaskList");
             QualityInspectTaskEdit = $('#QualityInspectTaskEdit');
@@ -124,6 +137,9 @@ var QualityInspectTask = {
         initDetailComponent: function () {
             QualityInspectTaskDetailList = $("#QualityInspectTaskDetailList");
             QualityInspectTaskDetailEdit = $('#QualityInspectTaskDetailEdit');
+        },
+        initResultComponent: function () {
+            QualityInspectTaskResultList = $("#QualityInspectTaskResultList");
         },
         initSupplierList: function () {
             SupplierList.tree({
@@ -139,6 +155,7 @@ var QualityInspectTask = {
                 data: [{sId: supplierId,}],
                 method: 'get',
                 pagination: true,
+                nowrap:false,
                 pageSize: 30,
                 toolbar: '#QualityInspectTaskToolbar',//SysUser.list.toolbar,
                 singleSelect: false,
@@ -395,11 +412,30 @@ var QualityInspectTask = {
                 }
             });
         },
+        //详情的检查标准弹框
+        result: function(){
+
+            QualityInspectTaskDetailEdit.dialog({
+                href: QualityInspectTask.URL.inputResultUI(),
+                title:"检查标准",
+                width:1000,
+                height:550,
+                onLoad: function () {
+                    var sels = QualityInspectTaskDetailList.datagrid("getSelections");
+                    console.log(sels[0]);
+                    // alert(sels[0].id);
+                    //请求详情数据
+                    QualityInspectTask.list.initResultList(sels[0].id);
+                }
+            })
+                .dialog("open");
+        },
         initDetailList: function (supplierId) {
             QualityInspectTaskDetailList.datagrid({
                 url: QualityInspectTask.URL.detailList()+"/"+supplierId,
                 method: 'get',
                 pagination: true,
+                nowrap:false,
                 pageSize: 30,
                 toolbar: '#QualityInspectTaskDetailToolbar',//SysUser.list.toolbar,
                 singleSelect: false,
@@ -457,6 +493,94 @@ var QualityInspectTask = {
                 onClickRow: function (index, row) {
                     QualityInspectTaskDetailList.datagrid("unselectAll");
                     QualityInspectTaskDetailList.datagrid("selectRow", index);
+                    QualityInspectTask.list.result();
+                },
+                onLoadSuccess: function (data) {
+                    console.log(data);
+                },
+            });
+        },
+        initResultList: function (qitdId) {
+            QualityInspectTaskResultList.datagrid({
+                url: QualityInspectTask.URL.resultList()+"/"+qitdId,
+                method: 'get',
+                pagination: true,
+                pageSize: 30,
+                nowrap:false,
+                // toolbar: '#QualityInspectTaskResultToolbar',//SysUser.list.toolbar,
+                singleSelect: false,
+                collapsible: false,
+                columns: [[
+                    {field: 'ck', checkbox: true},
+                    {field: 'id', title: '主键id', hidden: true},
+                    {field: 'checkContent', title: '检查内容', width: '30%', hidden: false},
+                    {field: 'isQualified', title: '是否合格', width: '8%', hidden: false,
+                        formatter: function (value, row, index) {
+                            return value==1?"合格":"不合格";
+                        }
+                    },
+                    {field: 'score', title: '得分(分)', width: '8%', hidden: false,
+                        formatter: function (value, row, index) {
+                            return value;
+                        }
+                    },
+                    {field: 'checkTime', title: '检查时间', width: '20%', hidden: false,
+                        formatter: function (value, row, index) {
+                            var unixTimestamp = new Date(value);
+                            return unixTimestamp.toLocaleString();
+                        }
+                    },
+                    {field: 'checkSituation', title: '检查情况', width: '25%', hidden: false},
+                    {field: 'enclosure', title: '附件', width: '8%', hidden: false,
+                        formatter: function (value, row, index) {
+                        if (value) {
+
+                            var enclosure = value.split(",");
+                            return enclosure.length+"个";
+                        }
+                        return "0个";
+                        }
+                    },
+                    // {field: 'checkUser', title: '检查人', width: '10%', hidden: false},
+                    // {field: 'isChecked', title: '是否检查', width: '5%', hidden: false},
+                    // {field: 'taskStime', title: '开始时间', width: '10%', hidden: false,
+                    //     formatter: function (value, row, index) {
+                    //         var unixTimestamp = new Date(value);
+                    //         return unixTimestamp.toLocaleString();
+                    //     }
+                    // },
+                    // {field: 'taskEtime', title: '结束时间', width: '10%', hidden: false,
+                    //     formatter: function (value, row, index) {
+                    //         var unixTimestamp = new Date(value);
+                    //         return unixTimestamp.toLocaleString();
+                    //     }
+                    // },
+                    // {field: 'enclosure', title: '附件', width: '5%', hidden: false},
+                    // {field: 'ctId', title: '检查模板', width: '13%', hidden: false,
+                    //     formatter: function (value, row, index) {
+                    //         if (row.gwCheckTemp){
+                    //             return row.gwCheckTemp.name;
+                    //         }
+                    //         return value;
+                    //     }
+                    // },
+                    // {field: 'year', title: '计划年份', width: '5%', hidden: false},
+                    // {
+                    //     field: 'startTime',
+                    //     title: '开始时间',
+                    //     width: '10%',
+                    //     hidden: false,
+                    //     formatter: function (value, row, index) {
+                    //         var unixTimestamp = new Date(value);
+                    //         return unixTimestamp.toLocaleString();
+                    //     }
+                    // }
+                ]],
+                //设置选中事件，清除之前的行选择
+                onClickRow: function (index, row) {
+                    QualityInspectTaskDetailList.datagrid("unselectAll");
+                    QualityInspectTaskDetailList.datagrid("selectRow", index);
+
                 },
                 onLoadSuccess: function (data) {
                     console.log(data);
