@@ -487,34 +487,34 @@
       <result column="u2name" jdbcType="VARCHAR" property="name" />
       <result column="u2login_name" jdbcType="VARCHAR" property="loginName" />
     </association>
-    <!--<collection property="GwQualityInspectTaskDetailForms" ofType="me.jinkun.rds.sys.web.form.GwQualityInspectTaskDetailForm">-->
-      <!--<id property="qitdid" javaType="BIGINT" column="id" />-->
-      <!--<result column="qitdqit_id" jdbcType="BIGINT" property="qitId" />-->
-      <!--<result column="qitdcheck_project" jdbcType="VARCHAR" property="checkProject" />-->
-      <!--<result column="qitdcheck_point" jdbcType="VARCHAR" property="checkPoint" />-->
-      <!--<result column="qitdfrequency" jdbcType="VARCHAR" property="frequency" />-->
-      <!--<result column="qitdqualified" jdbcType="BIT" property="qualified" />-->
-      <!--<result column="qitdscore" jdbcType="VARCHAR" property="score" />-->
-      <!--<result column="qitdcheck_time" jdbcType="TIMESTAMP" property="checkTime" />-->
-      <!--<result column="qitdcheck_user" jdbcType="BIGINT" property="checkUser" />-->
-      <!--<result column="qitdis_checked" jdbcType="BIT" property="isChecked" />-->
-      <!--<result column="qitdtask_stime" jdbcType="TIMESTAMP" property="taskStime" />-->
-      <!--<result column="qitdtask_etime" jdbcType="TIMESTAMP" property="taskEtime" />-->
-      <!--<result column="qitdsort" jdbcType="INTEGER" property="sort" />-->
-      <!--<result column="qitdenclosure" jdbcType="VARCHAR" property="enclosure" />-->
-      <!--<result column="qitdremark" jdbcType="VARCHAR" property="remark" />-->
-      <!--<collection property="gwQualityInspectTaskResultForms" ofType="me.jinkun.rds.sys.web.form.GwQualityInspectTaskResultForm">-->
-        <!--<id property="qitrid" javaType="BIGINT" column="id" />-->
+    <collection property="gwQualityInspectTaskDetailForms" ofType="me.jinkun.rds.sys.web.form.GwQualityInspectTaskDetailForm" >
+      <!--<id column="qitdid" javaType="INTEGER" property="id" />-->
+      <result column="qitdqit_id" jdbcType="BIGINT" property="qitId" />
+      <result column="qitdcheck_project" jdbcType="VARCHAR" property="checkProject" />
+      <result column="qitdcheck_point" jdbcType="VARCHAR" property="checkPoint" />
+      <result column="qitdfrequency" jdbcType="VARCHAR" property="frequency" />
+      <result column="qitdqualified" jdbcType="BIT" property="qualified" />
+      <result column="qitdscore" jdbcType="VARCHAR" property="score" />
+      <result column="qitdcheck_time" jdbcType="TIMESTAMP" property="checkTime" />
+      <result column="qitdcheck_user" jdbcType="BIGINT" property="checkUser" />
+      <result column="qitdis_checked" jdbcType="BIT" property="isChecked" />
+      <result column="qitdtask_stime" jdbcType="TIMESTAMP" property="taskStime" />
+      <result column="qitdtask_etime" jdbcType="TIMESTAMP" property="taskEtime" />
+      <result column="qitdsort" jdbcType="INTEGER" property="sort" />
+      <result column="qitdenclosure" jdbcType="VARCHAR" property="enclosure" />
+      <result column="qitdremark" jdbcType="VARCHAR" property="remark" />
+      <collection property="gwQualityInspectTaskResultForms" ofType="me.jinkun.rds.sys.web.form.GwQualityInspectTaskResultForm">
+        <!--<id column="qitrid" javaType="INTEGER" property="id" />-->
         <!--<result column="qitrqitd_id" jdbcType="BIGINT" property="qitdId" />-->
-        <!--<result column="qitrcheck_content" jdbcType="VARCHAR" property="checkContent" />-->
-        <!--<result column="qitris_qualified" jdbcType="BIT" property="isQualified" />-->
-        <!--<result column="qitrscore" jdbcType="INTEGER" property="score" />-->
-        <!--<result column="qitrcheck_time" jdbcType="TIMESTAMP" property="checkTime" />-->
-        <!--<result column="qitrcheck_situation" jdbcType="VARCHAR" property="checkSituation" />-->
-        <!--<result column="qitrenclosure" jdbcType="VARCHAR" property="enclosure" />-->
-        <!--<result column="qitrremark" jdbcType="VARCHAR" property="remark" />-->
-      <!--</collection>-->
-    <!--</collection>-->
+        <result column="qitrcheck_content" jdbcType="VARCHAR" property="checkContent" />
+        <result column="qitris_qualified" jdbcType="BIT" property="isQualified" />
+        <result column="qitrscore" jdbcType="INTEGER" property="score" />
+        <result column="qitrcheck_time" jdbcType="TIMESTAMP" property="checkTime" />
+        <result column="qitrcheck_situation" jdbcType="VARCHAR" property="checkSituation" />
+        <result column="qitrenclosure" jdbcType="VARCHAR" property="enclosure" />
+        <result column="qitrremark" jdbcType="VARCHAR" property="remark" />
+      </collection>
+    </collection>
 
   </resultMap>
 
@@ -545,7 +545,7 @@
       and qit.inspector_id = #{inspectorId}
     </if>
     <if test="nowTime != null">
-      and qit.end_time > #{nowTime} <![CDATA[<and  qit.start_time < #{nowTime} ]]>
+      and qit.end_time > #{nowTime} <![CDATA[and  qit.start_time < #{nowTime} ]]>
     </if>
   </select>
 

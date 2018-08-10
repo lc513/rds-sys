@@ -10,14 +10,14 @@ import java.util.List;
 public class GwQualityInspectTaskForm extends GwQualityInspectTask {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private Date newTime;
+    private Date nowTime;
 
-    public Date getNewTime() {
-        return newTime;
+    public Date getNowTime() {
+        return nowTime;
     }
 
-    public void setNewTime(Date newTime) {
-        this.newTime = newTime;
+    public void setNowTime(Date nowTime) {
+        this.nowTime = nowTime;
     }
 
     private List<GwQualityInspectTaskDetailForm> gwQualityInspectTaskDetailForms;

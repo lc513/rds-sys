@@ -135,10 +135,11 @@ public class GwQualityInspectTaskServiceImpl implements GwQualityInspectTaskServ
             Long uId = sysUser.getId();
             GwQualityInspectTaskForm gwQualityInspectTaskForm = new GwQualityInspectTaskForm();
             gwQualityInspectTaskForm.setInspectorId(uId);
-            gwQualityInspectTaskForm.setNewTime(new Date());
+            gwQualityInspectTaskForm.setNowTime(new Date());
             List<GwQualityInspectTaskForm> gwQualityInspectTaskForms = mapper.selectDownByUser(gwQualityInspectTaskForm);
             return BaseResult.ok("获取成功",gwQualityInspectTaskForms);
         }catch (Exception e){
+            e.printStackTrace();
             return BaseResult.fail("失败",e);
         }
 

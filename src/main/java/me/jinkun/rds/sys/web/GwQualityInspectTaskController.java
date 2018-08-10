@@ -52,12 +52,13 @@ public class GwQualityInspectTaskController {
 
 
     /**
-     * 岗位自检任务下载
+     * 岗位自检任务下载 http://192.168.50.137:8080/QualityInspectTask/QualityInspectTaskDownLoad
      * @param authorization
      * @return
      */
     @RequestMapping(value = "/QualityInspectTaskDownLoad",method = RequestMethod.GET)
-    public Object QualityInspectTaskDownLoad(@RequestHeader("Authorization") String authorization){
+    @ResponseBody
+    public Object QualityInspectTaskDownLoad(@RequestHeader(value = "Authorization",defaultValue = "") String authorization){//@RequestHeader("Authorization") String authorization
         return gwQualityInspectTaskService.selectQualityInspectTaskDownLoad(authorization);
     }
 }
