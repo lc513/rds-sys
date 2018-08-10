@@ -30,4 +30,5 @@ public interface GwQualityInspectTaskMapper {
     int updateByPrimaryKey(GwQualityInspectTask record);
 
     List<GwQualityInspectTask> selectCarrySonByExample(GwQualityInspectTaskForm gwQualityInspectTaskForm);
+    List<GwQualityInspectTaskForm> selectDownByUser(GwQualityInspectTaskForm gwQualityInspectTaskForm);
 }

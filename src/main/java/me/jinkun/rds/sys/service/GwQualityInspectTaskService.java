@@ -8,4 +8,6 @@ public interface GwQualityInspectTaskService {
     EUDataGridResult getGwQualityInspectTaskList(GwQualityInspectTaskForm gwQualityInspectTaskForm, int offset, int limit);
 
     BaseResult addTask(GwQualityInspectTaskForm gwQualityInspectTaskForm);
+
+    BaseResult selectQualityInspectTaskDownLoad(String authorization);
 }

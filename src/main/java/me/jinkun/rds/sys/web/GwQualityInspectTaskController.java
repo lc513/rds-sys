@@ -49,4 +49,15 @@ public class GwQualityInspectTaskController {
     public BaseResult addTask(GwQualityInspectTaskForm gwQualityInspectTaskForm){
         return gwQualityInspectTaskService.addTask(gwQualityInspectTaskForm);
     }
+
+
+    /**
+     * 岗位自检任务下载
+     * @param authorization
+     * @return
+     */
+    @RequestMapping(value = "/QualityInspectTaskDownLoad",method = RequestMethod.GET)
+    public Object QualityInspectTaskDownLoad(@RequestHeader("Authorization") String authorization){
+        return gwQualityInspectTaskService.selectQualityInspectTaskDownLoad(authorization);
+    }
 }

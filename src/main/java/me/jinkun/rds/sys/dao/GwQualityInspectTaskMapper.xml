@@ -426,4 +426,129 @@
       and qit.create_time > #{startTime} <![CDATA[<and  qit.create_time < #{startTime} ]]>
     </if>
   </select>
+
+
+
+
+
+
+
+
+
+
+
+  <sql id="Base_Column_List3">
+      qitd.id qitdid, qitd.qit_id qitdqit_id, qitd.check_project qitdcheck_project, qitd.check_point qitdcheck_point, qitd.frequency qitdfrequency,
+      qitd.qualified qitdqualified,qitd.score qitdscore, qitd.check_time qitdcheck_time, qitd.check_user qitdcheck_user, qitd.is_checked qitdis_checked,
+      qitd.task_stime qitdtask_stime, qitd.task_etime qitdtask_etime, qitd.sort qitdsort, qitd.enclosure qitdenclosure, qitd.remark qitdremark,
+      qitr.id qitrid, qitr.qitd_id qitrqitd_id, qitr.check_content qitrcheck_content, qitr.is_qualified qitris_qualified, qitr.score qitrscore,
+      qitr.check_time qitrcheck_time, qitr.check_situation qitrcheck_situation, qitr.enclosure qitrenclosure, qitr.remark qitrremark
+  </sql>
+  <resultMap id="BaseResultMap3" type="me.jinkun.rds.sys.web.form.GwQualityInspectTaskForm">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="s_id" jdbcType="BIGINT" property="sId"/>
+    <result column="ct_id" jdbcType="BIGINT" property="ctId"/>
+    <result column="c_id" jdbcType="BIGINT" property="cId"/>
+    <result column="u_id" jdbcType="BIGINT" property="uId"/>
+    <result column="inspector_id" jdbcType="BIGINT" property="inspectorId"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="year" jdbcType="BIGINT" property="year"/>
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+    <result column="sort" jdbcType="INTEGER" property="sort"/>
+    <result column="is_generate" jdbcType="BIT" property="isGenerate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <association property="gwSupplier" javaType="me.jinkun.rds.sys.domain.GwSupplier">
+      <id column="sid" jdbcType="BIGINT"  property="id" />
+      <result column="sname" jdbcType="VARCHAR" property="name" />
+      <result column="ssort" jdbcType="INTEGER"  property="sort" />
+    </association>
+    <association property="gwCheckTemp" javaType="me.jinkun.rds.sys.domain.GwCheckTemp">
+      <id column="ctid" jdbcType="BIGINT"  property="id" />
+      <result column="ctcc_id" jdbcType="BIGINT" property="ccId" />
+      <result column="cts_id" jdbcType="BIGINT" property="sId" />
+      <result column="ctname" jdbcType="VARCHAR" property="name" />
+      <result column="ctsort" jdbcType="INTEGER"  property="sort" />
+      <result column="ctremark" jdbcType="VARCHAR" property="remark" />
+    </association>
+    <association property="gwCompany" javaType="me.jinkun.rds.sys.domain.GwCompany">
+      <id column="cid" jdbcType="BIGINT"  property="id" />
+      <result column="cname" jdbcType="VARCHAR" property="name" />
+      <result column="csort" jdbcType="INTEGER"  property="sort" />
+    </association>
+    <association property="compileUser" javaType="me.jinkun.rds.sys.domain.SysUser">
+      <id column="uid" jdbcType="BIGINT"  property="id" />
+      <result column="uname" jdbcType="VARCHAR" property="name" />
+      <result column="ulogin_name" jdbcType="VARCHAR" property="loginName" />
+    </association>
+    <association property="inspectorUser" javaType="me.jinkun.rds.sys.domain.SysUser">
+      <id column="u2id" jdbcType="BIGINT"  property="id" />
+      <result column="u2name" jdbcType="VARCHAR" property="name" />
+      <result column="u2login_name" jdbcType="VARCHAR" property="loginName" />
+    </association>
+    <!--<collection property="GwQualityInspectTaskDetailForms" ofType="me.jinkun.rds.sys.web.form.GwQualityInspectTaskDetailForm">-->
+      <!--<id property="qitdid" javaType="BIGINT" column="id" />-->
+      <!--<result column="qitdqit_id" jdbcType="BIGINT" property="qitId" />-->
+      <!--<result column="qitdcheck_project" jdbcType="VARCHAR" property="checkProject" />-->
+      <!--<result column="qitdcheck_point" jdbcType="VARCHAR" property="checkPoint" />-->
+      <!--<result column="qitdfrequency" jdbcType="VARCHAR" property="frequency" />-->
+      <!--<result column="qitdqualified" jdbcType="BIT" property="qualified" />-->
+      <!--<result column="qitdscore" jdbcType="VARCHAR" property="score" />-->
+      <!--<result column="qitdcheck_time" jdbcType="TIMESTAMP" property="checkTime" />-->
+      <!--<result column="qitdcheck_user" jdbcType="BIGINT" property="checkUser" />-->
+      <!--<result column="qitdis_checked" jdbcType="BIT" property="isChecked" />-->
+      <!--<result column="qitdtask_stime" jdbcType="TIMESTAMP" property="taskStime" />-->
+      <!--<result column="qitdtask_etime" jdbcType="TIMESTAMP" property="taskEtime" />-->
+      <!--<result column="qitdsort" jdbcType="INTEGER" property="sort" />-->
+      <!--<result column="qitdenclosure" jdbcType="VARCHAR" property="enclosure" />-->
+      <!--<result column="qitdremark" jdbcType="VARCHAR" property="remark" />-->
+      <!--<collection property="gwQualityInspectTaskResultForms" ofType="me.jinkun.rds.sys.web.form.GwQualityInspectTaskResultForm">-->
+        <!--<id property="qitrid" javaType="BIGINT" column="id" />-->
+        <!--<result column="qitrqitd_id" jdbcType="BIGINT" property="qitdId" />-->
+        <!--<result column="qitrcheck_content" jdbcType="VARCHAR" property="checkContent" />-->
+        <!--<result column="qitris_qualified" jdbcType="BIT" property="isQualified" />-->
+        <!--<result column="qitrscore" jdbcType="INTEGER" property="score" />-->
+        <!--<result column="qitrcheck_time" jdbcType="TIMESTAMP" property="checkTime" />-->
+        <!--<result column="qitrcheck_situation" jdbcType="VARCHAR" property="checkSituation" />-->
+        <!--<result column="qitrenclosure" jdbcType="VARCHAR" property="enclosure" />-->
+        <!--<result column="qitrremark" jdbcType="VARCHAR" property="remark" />-->
+      <!--</collection>-->
+    <!--</collection>-->
+
+  </resultMap>
+
+
+
+
+  <select id="selectDownByUser" parameterType="me.jinkun.rds.sys.web.form.GwQualityInspectTaskForm"
+          resultMap="BaseResultMap3">
+    select
+    <include refid="Base_Column_List2"/> ,<include refid="Base_Column_List3"/>
+    from gw_quality_inspect_task qit
+    left join gw_supplier s <!--项目-->
+    on qit.s_id = s.id
+    left join gw_check_temp ct <!--模板-->
+    on qit.ct_id = ct.id
+    left join gw_company c <!--部门-->
+    on qit.c_id = c.id
+    left join sys_user u <!--编制人信息-->
+    on qit.u_id = u.id
+    left join sys_user u2 <!--巡检人信息-->
+    on qit.inspector_id = u2.id
+    left join gw_quality_inspect_task_detail qitd <!--岗位自检 计划详情-->
+    on qit.id = qitd.qit_id
+    left join gw_quality_inspect_task_result qitr <!--岗位自检 检查内容及反馈-->
+    on qitd.id = qitr.qitd_id
+    where 1=1
+    <if test="inspectorId != null">
+      and qit.inspector_id = #{inspectorId}
+    </if>
+    <if test="nowTime != null">
+      and qit.end_time > #{nowTime} <![CDATA[<and  qit.start_time < #{nowTime} ]]>
+    </if>
+  </select>
+
+
+
 </mapper>

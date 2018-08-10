@@ -1,6 +1,7 @@
 package me.jinkun.rds.sys.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class GwQualityInspectTaskDetail {
     private Long     id;
@@ -32,6 +33,7 @@ public class GwQualityInspectTaskDetail {
     private String   enclosure;
 
     private String   remark;
+
 
     public Long getId() {
         return id;
