@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- *
+ * 部门信息（客户公司的分类（或自己的公司））
  */
 @Controller
 @RequestMapping("/Company")

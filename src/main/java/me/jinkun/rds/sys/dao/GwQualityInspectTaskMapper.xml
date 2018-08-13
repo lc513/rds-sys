@@ -355,7 +355,9 @@
 
   <sql id="Base_Column_List2">
     qit.id, qit.s_id, qit.ct_id, qit.c_id, qit.u_id, qit.inspector_id, qit.name, qit.year, qit.start_time, qit.end_time, qit.sort,qit.is_generate,
-    qit.remark, qit.create_time,s.id sid,s.name sname,s.sort ssort,ct.id ctid,ct.cc_id ctcc_id,ct.s_id cts_id,ct.name ctname,
+    qit.remark, qit.create_time,
+    DATE_FORMAT(qit.create_time, "%Y-%m-%d %h:%i:%s") qitcreate_time,
+    s.id sid,s.name sname,s.sort ssort,ct.id ctid,ct.cc_id ctcc_id,ct.s_id cts_id,ct.name ctname,
     ct.sort ctsort,ct.remark ctremark,c.id cid,c.name cname,c.sort csort,u.id uid,u.login_name ulogin_name,u.name uname,u2.id u2id ,u2.login_name u2login_name ,u2.name u2name
   </sql>
   <resultMap id="BaseResultMap2" type="me.jinkun.rds.sys.domain.GwQualityInspectTask">
@@ -373,6 +375,7 @@
     <result column="is_generate" jdbcType="BIT" property="isGenerate" />
     <result column="remark" jdbcType="VARCHAR" property="remark"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="qitcreate_time" jdbcType="VARCHAR" property="createTimeStr"/>
     <association property="gwSupplier" javaType="me.jinkun.rds.sys.domain.GwSupplier">
       <id column="sid" jdbcType="BIGINT"  property="id" />
       <result column="sname" jdbcType="VARCHAR" property="name" />

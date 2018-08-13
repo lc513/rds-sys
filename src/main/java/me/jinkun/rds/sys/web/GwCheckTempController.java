@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- *
+ * 检查模板 4个级别 检查模板
  */
 @Controller
 @RequestMapping("/GwCheckTemp")

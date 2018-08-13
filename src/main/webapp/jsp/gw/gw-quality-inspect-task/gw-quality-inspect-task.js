@@ -151,7 +151,7 @@ var QualityInspectTask = {
         },
         initList: function (supplierId) {
             QualityInspectTaskList.datagrid({
-                url: QualityInspectTask.URL.list(),
+                url: QualityInspectTask.URL.list()+"/"+supplierId,
                 data: [{sId: supplierId,}],
                 method: 'get',
                 pagination: true,
@@ -224,27 +224,11 @@ var QualityInspectTask = {
                         }
                     },
                     {
-                        field: 'createTime',
+                        field: 'createTimeStr',
                         title: '编制时间',
                         width: '10%',
                         hidden: false,
-                        formatter: function (value, row, index) {
-                            var unixTimestamp = new Date(value);
-                            return unixTimestamp.toLocaleString();
-                        }
                     },
-                    // {
-                    //     field: 'sysProject', title: '组织名', width: '13.571%', hidden: false,
-                    //     formatter: function (value, row, index) {
-                    //         return value.name;
-                    //     }
-                    // },
-                    // {
-                    //     field: 'examine', title: '是否审查', width: '13.571%', hidden: false,
-                    //     formatter: function (value, row, index) {
-                    //         return value == 1 ? '是' : '否';
-                    //     }
-                    // },
                 ]],
                 //设置选中事件，清除之前的行选择
                 onClickRow: function (index, row) {
@@ -578,8 +562,8 @@ var QualityInspectTask = {
                 ]],
                 //设置选中事件，清除之前的行选择
                 onClickRow: function (index, row) {
-                    QualityInspectTaskDetailList.datagrid("unselectAll");
-                    QualityInspectTaskDetailList.datagrid("selectRow", index);
+                    QualityInspectTaskResultList.datagrid("unselectAll");
+                    QualityInspectTaskResultList.datagrid("selectRow", index);
 
                 },
                 onLoadSuccess: function (data) {

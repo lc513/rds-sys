@@ -39,11 +39,20 @@ public class GwQualityInspectTask {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createTime;
+    private String createTimeStr;
     private GwSupplier gwSupplier;
     private GwCheckTemp gwCheckTemp;
     private GwCompany gwCompany;
     private SysUser compileUser;
     private SysUser inspectorUser;
+
+    public String getCreateTimeStr() {
+        return createTimeStr;
+    }
+
+    public void setCreateTimeStr(String createTimeStr) {
+        this.createTimeStr = createTimeStr;
+    }
 
     public Long getId() {
         return id;

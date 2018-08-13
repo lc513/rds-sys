@@ -33,10 +33,10 @@ public class GwQualityInspectTaskController {
      * @param limit
      * @return
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list/{supplierId}")
     @ResponseBody
-    public Object getGwQualityInspectTaskList(GwQualityInspectTaskForm gwQualityInspectTaskForm,@RequestParam(defaultValue = "1") int offset, @RequestParam(defaultValue = "10") int limit){
-        return gwQualityInspectTaskService.getGwQualityInspectTaskList(gwQualityInspectTaskForm,offset,limit);
+    public Object getGwQualityInspectTaskList(GwQualityInspectTaskForm gwQualityInspectTaskForm,@PathVariable Long supplierId,@RequestParam(defaultValue = "1") int offset, @RequestParam(defaultValue = "10") int limit){
+        return gwQualityInspectTaskService.getGwQualityInspectTaskList(gwQualityInspectTaskForm,supplierId,offset,limit);
     }
 
     /**

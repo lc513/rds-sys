@@ -36,11 +36,11 @@ public class GwQualityInspectTaskServiceImpl implements GwQualityInspectTaskServ
     Logger logger = LoggerFactory.getLogger(GwQualityInspectTaskServiceImpl.this.getClass());
 
     @Override
-    public EUDataGridResult getGwQualityInspectTaskList(GwQualityInspectTaskForm gwQualityInspectTaskForm, int offset, int limit) {
+    public EUDataGridResult getGwQualityInspectTaskList(GwQualityInspectTaskForm gwQualityInspectTaskForm,Long supplierId, int offset, int limit) {
         EUDataGridResult result = null;
         long count = 0;
         try {
-            gwQualityInspectTaskForm.setsId(1l);//1代表是阳澄湖游客中心的
+            gwQualityInspectTaskForm.setsId(supplierId);//1代表是阳澄湖游客中心的
             Subject subject = SecurityUtils.getSubject();
             ShiroUser shiroUser = (ShiroUser) subject.getPrincipal();
             Long id = shiroUser.getId();
